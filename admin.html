@@ -17,11 +17,12 @@
     <h1>⚙️ Admin</h1>
 
     <div class="card">
-      <h2>Set Quiz Letter</h2>
-      <p class="admin-desc">Enter a letter below. The quiz will only show this letter until you clear it.</p>
-      <div class="admin-form">
-        <input type="text" id="letter-input" class="letter-input" maxlength="1" placeholder="A-Z" autocomplete="off">
-        <button id="submit-btn" class="mic-btn start-btn">✅ Set Letter</button>
+      <h2>Select Quiz Letters</h2>
+      <p class="admin-desc">Tap letters to include in the quiz. Only selected letters will appear.</p>
+      <div id="alpha-board" class="alpha-board"></div>
+      <div class="board-actions">
+        <button id="select-all-btn" class="mic-btn start-btn small-btn">Select All</button>
+        <button id="clear-btn" class="mic-btn clear-btn small-btn">Clear All</button>
       </div>
       <div id="admin-feedback" class="admin-feedback"></div>
     </div>
@@ -29,7 +30,6 @@
     <div class="card">
       <h2>Current Setting</h2>
       <p id="current-setting" class="current-setting"></p>
-      <button id="clear-btn" class="mic-btn clear-btn">🗑️ Clear &amp; Use Random</button>
     </div>
   </div>
 
