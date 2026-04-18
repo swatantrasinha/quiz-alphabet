@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Alphabet Quiz 🎓</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-link">🏠 Homepage</a>
+    <a href="quiz.html" class="nav-link">🔤 Quiz</a>
+    <a href="admin.html" class="nav-link active">⚙️ Admin</a>
+  </nav>
+
+  <div class="container">
+    <h1>⚙️ Admin</h1>
+
+    <div class="card">
+      <h2>Set Quiz Letter</h2>
+      <p class="admin-desc">Enter a letter below. The quiz will only show this letter until you clear it.</p>
+      <div class="admin-form">
+        <input type="text" id="letter-input" class="letter-input" maxlength="1" placeholder="A-Z" autocomplete="off">
+        <button id="submit-btn" class="mic-btn start-btn">✅ Set Letter</button>
+      </div>
+      <div id="admin-feedback" class="admin-feedback"></div>
+    </div>
+
+    <div class="card">
+      <h2>Current Setting</h2>
+      <p id="current-setting" class="current-setting"></p>
+      <button id="clear-btn" class="mic-btn clear-btn">🗑️ Clear &amp; Use Random</button>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

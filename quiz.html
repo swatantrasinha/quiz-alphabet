@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Alphabet Quiz 🎓</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-link">🏠 Homepage</a>
+    <a href="quiz.html" class="nav-link active">🔤 Quiz</a>
+    <a href="admin.html" class="nav-link">⚙️ Admin</a>
+  </nav>
+
+  <div class="container">
+    <h1>🔤 Alphabet Quiz</h1>
+    <div class="score-board">Score: <span id="score">0</span> / <span id="total">0</span></div>
+    <div id="mode-badge" class="mode-badge"></div>
+
+    <div class="card">
+      <div id="letter" class="letter">A</div>
+      <p class="prompt">What letter is this? Tap Start and say it!</p>
+    </div>
+
+    <div class="btn-group">
+      <button id="start-btn" class="mic-btn start-btn" aria-label="Start listening">🎤 Start</button>
+      <button id="stop-btn" class="mic-btn stop-btn hidden" aria-label="Stop listening">⏹ Stop</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+    <div id="heard" class="heard"></div>
+    <button id="next-btn" class="next-btn hidden">Next Letter ➡️</button>
+
+    <div id="no-support" class="no-support hidden">
+      ⚠️ Your browser doesn't support speech recognition. Please use Chrome or Edge.
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

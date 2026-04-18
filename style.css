@@ -1,0 +1,191 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem 2rem;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  justify-content: center;
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.nav-link:hover { background: rgba(255,255,255,0.15); }
+.nav-link.active { background: rgba(255,255,255,0.25); color: #fff; }
+
+/* Container */
+.container {
+  background: #fff;
+  border-radius: 2rem;
+  padding: 2rem;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+h2 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #333; }
+
+.subtitle { color: #666; margin-bottom: 1.5rem; }
+
+.score-board { font-size: 1.1rem; color: #555; margin-bottom: 0.5rem; }
+
+.mode-badge {
+  font-size: 0.85rem;
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+.mode-badge.fixed { background: #fff3cd; color: #856404; }
+.mode-badge.random { background: #d4edda; color: #155724; }
+
+.card {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #eee;
+  text-align: center;
+}
+
+.letter {
+  font-size: 8rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1;
+  user-select: none;
+}
+
+.celebration { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  top: -10px;
+  animation: fall 1.5s ease-in forwards;
+}
+
+@keyframes fall { to { top: 110vh; opacity: 0; transform: rotate(720deg); } }
+
+.prompt { color: #666; margin-top: 0.5rem; font-size: 1rem; }
+
+/* Buttons */
+.btn-group { display: flex; gap: 1rem; justify-content: center; }
+
+.mic-btn {
+  font-size: 1.3rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 3rem;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.3s;
+}
+.mic-btn:active { transform: scale(0.95); }
+.mic-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.start-btn { background: #4a3aff; }
+.start-btn:hover:not(:disabled) { background: #3728d6; }
+
+.stop-btn { background: #e74c3c; animation: pulse 1s infinite; }
+.stop-btn:hover { background: #c0392b; }
+
+.clear-btn { background: #888; margin-top: 0.8rem; }
+.clear-btn:hover { background: #666; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(231,76,60,0.5); }
+  50% { box-shadow: 0 0 0 14px rgba(231,76,60,0); }
+}
+
+.feedback { font-size: 2.5rem; min-height: 3rem; margin: 0.8rem 0 0.3rem; }
+.heard { font-size: 0.95rem; color: #888; min-height: 1.4rem; }
+
+.next-btn {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 3rem;
+  background: #27ae60;
+  color: #fff;
+  cursor: pointer;
+}
+.next-btn:hover { background: #1e8e4e; }
+
+.hidden { display: none !important; }
+
+.no-support { margin-top: 1rem; color: #c0392b; font-weight: 600; }
+
+/* Homepage */
+.feature-list {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+}
+.feature-list li { padding: 0.4rem 0; font-size: 1rem; color: #444; }
+
+.start-quiz-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #4a3aff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.start-quiz-btn:hover { background: #3728d6; }
+
+/* Admin */
+.admin-desc { color: #666; margin-bottom: 1rem; font-size: 0.95rem; }
+
+.admin-form { display: flex; gap: 0.8rem; justify-content: center; align-items: center; }
+
+.letter-input {
+  width: 60px;
+  height: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid #ddd;
+  border-radius: 0.8rem;
+  outline: none;
+  font-weight: 700;
+}
+.letter-input:focus { border-color: #4a3aff; }
+
+.admin-feedback { margin-top: 0.8rem; font-weight: 600; min-height: 1.5rem; }
+
+.current-setting { font-size: 1.1rem; color: #333; margin-bottom: 0.5rem; font-weight: 600; }
+
+@media (max-width: 480px) {
+  .letter { font-size: 6rem; }
+  .container { padding: 1.5rem; }
+  .navbar { gap: 0.3rem; }
+  .nav-link { padding: 0.4rem 0.7rem; font-size: 0.85rem; }
+}
