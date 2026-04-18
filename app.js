@@ -10,6 +10,9 @@ const scoreEl = document.getElementById('score');
 const totalEl = document.getElementById('total');
 const noSupport = document.getElementById('no-support');
 
+const answerInput = document.getElementById('answer-input');
+const submitAnswer = document.getElementById('submit-answer');
+
 let score = 0;
 let total = 0;
 let currentLetter = 'A';
@@ -17,31 +20,31 @@ let recognition;
 let transcript = '';
 
 const LETTER_IMAGES = {
-  A: { img: 'https://images.unsplash.com/photo-1568702846914-96b305d2uj38?w=300&h=300&fit=crop', word: 'Apple' },
-  B: { img: 'https://images.unsplash.com/photo-1554080353-a576cf803bda?w=300&h=300&fit=crop', word: 'Ball' },
+  A: { img: 'images/apple.avif', word: 'Apple' },
+  B: { img: 'images/ball.avif', word: 'Ball' },
   C: { img: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&h=300&fit=crop', word: 'Cat' },
   D: { img: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=300&h=300&fit=crop', word: 'Dog' },
   E: { img: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=300&h=300&fit=crop', word: 'Elephant' },
   F: { img: 'https://images.unsplash.com/photo-1524704654690-b56c05c78a00?w=300&h=300&fit=crop', word: 'Fish' },
-  G: { img: 'https://images.unsplash.com/photo-1524024973431-3c27cd77f348?w=300&h=300&fit=crop', word: 'Goat' },
+  G: { img: 'images/goat.avif', word: 'Goat' },
   H: { img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=300&h=300&fit=crop', word: 'Hen' },
-  I: { img: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=300&h=300&fit=crop', word: 'Ice Cream' },
-  J: { img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=300&fit=crop', word: 'Jug' },
-  K: { img: 'https://images.unsplash.com/photo-1601134991665-a020399422e3?w=300&h=300&fit=crop', word: 'Kite' },
+  I: { img: 'images/icecream.jpg', word: 'Ice Cream' },
+  J: { img: 'images/jug.avif', word: 'Jug' },
+  K: { img: 'images/kite.jpeg', word: 'Kite' },
   L: { img: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=300&h=300&fit=crop', word: 'Lion' },
   M: { img: 'https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=300&h=300&fit=crop', word: 'Monkey' },
-  N: { img: 'https://images.unsplash.com/photo-1606567595334-d39972c85dbe?w=300&h=300&fit=crop', word: 'Nest' },
+  N: { img: 'images/nest.avif', word: 'Nest' },
   O: { img: 'https://images.unsplash.com/photo-1547514701-42782101795e?w=300&h=300&fit=crop', word: 'Orange' },
   P: { img: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=300&h=300&fit=crop', word: 'Parrot' },
-  Q: { img: 'https://images.unsplash.com/photo-1589554009835-5c8e1e1b1b0e?w=300&h=300&fit=crop', word: 'Queen' },
+  Q: { img: 'images/queen.avif', word: 'Queen' },
   R: { img: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=300&h=300&fit=crop', word: 'Rabbit' },
-  S: { img: 'https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?w=300&h=300&fit=crop', word: 'Sun' },
+  S: { img: 'images/sun.avif', word: 'Sun' },
   T: { img: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=300&h=300&fit=crop', word: 'Tiger' },
-  U: { img: 'https://images.unsplash.com/photo-1534309466160-70b22cc6254d?w=300&h=300&fit=crop', word: 'Umbrella' },
-  V: { img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=300&h=300&fit=crop', word: 'Van' },
-  W: { img: 'https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?w=300&h=300&fit=crop', word: 'Watermelon' },
-  X: { img: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=300&h=300&fit=crop', word: 'Xylophone' },
-  Y: { img: 'https://images.unsplash.com/photo-1605559911160-a3d95d213904?w=300&h=300&fit=crop', word: 'Yak' },
+  U: { img: 'images/umbrella.avif', word: 'Umbrella' },
+  V: { img: 'images/van.avif', word: 'Van' },
+  W: { img: 'images/watch.jpg', word: 'Watch' },
+  X: { img: 'images/xylophone.avif', word: 'Xylophone' },
+  Y: { img: 'images/Yak.avif', word: 'Yak' },
   Z: { img: 'https://images.unsplash.com/photo-1526095179574-86e545346ae6?w=300&h=300&fit=crop', word: 'Zebra' },
 };
 
@@ -152,7 +155,29 @@ function nextQuestion() {
   heardEl.textContent = '';
   nextBtn.classList.add('hidden');
   startBtn.disabled = false;
+  answerInput.value = '';
+  answerInput.disabled = false;
+  submitAnswer.disabled = false;
   showStartState();
+}
+
+function handleCorrect() {
+  score++;
+  feedbackEl.innerHTML = '';
+  showClapping();
+  showCelebration();
+  showHappyOverlay();
+}
+
+function handleWrong() {
+  feedbackEl.innerHTML = '';
+  showSadOverlay();
+}
+
+function disableInputs() {
+  startBtn.disabled = true;
+  answerInput.disabled = true;
+  submitAnswer.disabled = true;
 }
 
 function checkAnswer() {
@@ -168,20 +193,15 @@ function checkAnswer() {
   const isCorrect = words.some(w => matchesLetter(w, currentLetter));
 
   if (isCorrect) {
-    score++;
-    feedbackEl.innerHTML = '';
-    showClapping();
-    showCelebration();
-    showHappyOverlay();
+    handleCorrect();
   } else {
-    feedbackEl.innerHTML = '';
-    showSadOverlay();
+    handleWrong();
   }
 
   scoreEl.textContent = score;
   totalEl.textContent = total;
   nextBtn.classList.remove('hidden');
-  startBtn.disabled = true;
+  disableInputs();
 }
 
 startBtn.addEventListener('click', () => {
@@ -282,6 +302,29 @@ function showCelebration() {
 
   setTimeout(() => container.remove(), 2500);
 }
+
+submitAnswer.addEventListener('click', () => {
+  const val = answerInput.value.trim().toUpperCase();
+  if (!/^[A-Z]$/.test(val)) {
+    heardEl.textContent = 'Please type a single letter (A-Z)';
+    return;
+  }
+  total++;
+  heardEl.textContent = `You typed: "${val}"`;
+  if (val === currentLetter) {
+    handleCorrect();
+  } else {
+    handleWrong();
+  }
+  scoreEl.textContent = score;
+  totalEl.textContent = total;
+  nextBtn.classList.remove('hidden');
+  disableInputs();
+});
+
+answerInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') submitAnswer.click();
+});
 
 nextBtn.addEventListener('click', nextQuestion);
 

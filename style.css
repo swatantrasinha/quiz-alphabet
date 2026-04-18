@@ -290,6 +290,45 @@ h2 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #333; }
 
 .hidden { display: none !important; }
 
+.divider {
+  color: #999;
+  font-size: 0.9rem;
+  margin: 0.8rem 0;
+  position: relative;
+}
+.divider::before, .divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 25%;
+  height: 1px;
+  background: #ddd;
+}
+.divider::before { left: 10%; }
+.divider::after { right: 10%; }
+
+.type-answer {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.answer-input {
+  width: 55px;
+  height: 48px;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid #ddd;
+  border-radius: 0.8rem;
+  outline: none;
+  font-weight: 700;
+}
+.answer-input:focus { border-color: #4a3aff; }
+.answer-input:disabled { opacity: 0.5; }
+
 .no-support { margin-top: 1rem; color: #c0392b; font-weight: 600; }
 
 /* Homepage */
